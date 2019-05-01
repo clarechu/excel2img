@@ -9,31 +9,22 @@ package cn.clare.www.excel2img.constant;
  */
 public class TableConstant {
 
-    //图片宽度
-    public static int IMAGE_WIDTH = 600;
-
-    //图片高度
-    public static int IMAGE_HEIGHT = 900;
-
     //启始高度
-    public static final int FIRST_HEIGHT_LINE = 20;
+    public static final int FIRST_HEIGHT_LINE = 10;
 
     //启始宽度
-    public static final int FIRST_WIDTH_LINE = 20;
+    public static final int FIRST_WIDTH_LINE = 10;
 
     //表格宽度
-    public static final int TABLE_HEIGHT = 190;
+    public static final int TABLE_HEIGHT = 350;
 
     //表格高度
-    public static final int TABLE_WIDTH = 60;
+    public static final int TABLE_WIDTH = 40;
 
     //列数
     public static final int HEIGHT_TABLE_NUMBER = 2;
 
     //行数
     public static final int WIDTH_TABLE_NUMBER = 12;
-
-    //线宽
-    public static final float STROKE = 3.0f;
     
 }
