@@ -36,7 +36,7 @@ public class ImportExcelUtil {
         XSSFRow row = null;
         XSSFCell cell = null;
         int rows = sheet.getPhysicalNumberOfRows();
-        //rows = 2;
+        rows = 2;
         for (int i = sheet.getFirstRowNum(); i <= rows; i++) {
             row = sheet.getRow(i);
             if (row == null) {
@@ -92,7 +92,10 @@ public class ImportExcelUtil {
         File file = new File("/Users/clare/Desktop/四厂/压力表选型工具（天川）.xlsx");
         List<List<Object>> dataList = importExcel(file);
         for (int i = 1; i < dataList.size(); i++) {
-            ImageUtil.getImage("test_" + i+".jpg", dataList.get(0), dataList.get(i));
+            String name = (String) dataList.get(i).get(0) + i + ".jpg";
+            dataList.get(0).remove(0);
+            dataList.get(i).remove(0);
+            ImageUtil.getImage(name, dataList.get(0), dataList.get(i));
         }
     }
 
