@@ -5,10 +5,7 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.text.DecimalFormat;
 import java.util.LinkedList;
 import java.util.List;
@@ -17,18 +14,18 @@ public class ImportExcelUtil {
 
     public static List<List<Object>> importExcel(File file) throws IOException {
         String fileName = file.getName();
-        String extension = fileName.lastIndexOf(".")==-1?"":fileName.substring(fileName.lastIndexOf(".")+1);
-        if("xlsx".equals(extension)){
+        String extension = fileName.lastIndexOf(".") == -1 ? "" : fileName.substring(fileName.lastIndexOf(".") + 1);
+        if ("xlsx".equals(extension)) {
             List<List<Object>> data = ImportExcelUtil.read2007Excel(new FileInputStream(file));
             return data;
-        }else{
+        } else {
             throw new IOException("不支持的文件类型");
         }
     }
 
     /**
      * 读取Office 2007 excel
-     * */
+     */
     public static List<List<Object>> read2007Excel(InputStream file) throws IOException {
         List<List<Object>> list = new LinkedList<List<Object>>();
         // 构造 XSSFWorkbook 对象，strPath 传入文件路径
@@ -39,7 +36,7 @@ public class ImportExcelUtil {
         XSSFRow row = null;
         XSSFCell cell = null;
         int rows = sheet.getPhysicalNumberOfRows();
-        rows = 2;
+        //rows = 2;
         for (int i = sheet.getFirstRowNum(); i <= rows; i++) {
             row = sheet.getRow(i);
             if (row == null) {
@@ -61,12 +58,12 @@ public class ImportExcelUtil {
                         break;
                     case XSSFCell.CELL_TYPE_NUMERIC:
                         //   System.out.println(i+"行"+j+" 列 is Number type ; DateFormt:"+cell.getCellStyle().getDataFormatString());
-                        if("@".equals(cell.getCellStyle().getDataFormatString())){
+                        if ("@".equals(cell.getCellStyle().getDataFormatString())) {
                             value = df.format(cell.getNumericCellValue());
-                        } else if("General".equals(cell.getCellStyle().getDataFormatString())){
+                        } else if ("General".equals(cell.getCellStyle().getDataFormatString())) {
                             value = nf.format(cell.getNumericCellValue());
-                        }else{
-                           // value = sdf.format(HSSFDateUtil.getJavaDate(cell.getNumericCellValue()));
+                        } else {
+                            // value = sdf.format(HSSFDateUtil.getJavaDate(cell.getNumericCellValue()));
                             value = nf.format(cell.getNumericCellValue());
                         }
                         break;
@@ -91,10 +88,12 @@ public class ImportExcelUtil {
         return list;
     }
 
-    public static void main(String[] args) throws IOException  {
+    public static void main(String[] args) throws IOException {
         File file = new File("/Users/clare/Desktop/四厂/压力表选型工具（天川）.xlsx");
-        List<List<Object>> dataList=importExcel(file);
-        ImageUtil.getImage(dataList.get(0), dataList.get(1));
+        List<List<Object>> dataList = importExcel(file);
+        for (int i = 1; i < dataList.size(); i++) {
+            ImageUtil.getImage("test_" + i+".jpg", dataList.get(0), dataList.get(i));
+        }
     }
 
 }

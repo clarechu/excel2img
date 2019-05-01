@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class ImageUtil {
 
-    public static void getImage(List<Object> objects, List<Object> objects1) {
+    public static void getImage(String imageName, List<Object> objects, List<Object> objects1) {
         int TotalWidth = TableConstant.TABLE_HEIGHT * 2 + TableConstant.FIRST_WIDTH_LINE * 2;
         int TotalHeight = TableConstant.TABLE_WIDTH * objects.size() + TableConstant.FIRST_HEIGHT_LINE * 2;
         BufferedImage image = new BufferedImage(TotalWidth, TotalHeight, BufferedImage.TYPE_INT_RGB);
@@ -38,13 +38,13 @@ public class ImageUtil {
         FontProfile(g2);
 
         int high = 100;
-        g2.setStroke(new BasicStroke(1.2f));
+        g2.setStroke(new BasicStroke(1.5f));
         //绘画表格线
         int h = TableConstant.FIRST_HEIGHT_LINE;
 
         //横线
         g2.setColor(new Color(243, 250, 255));
-        for (int i = 0; i <= TableConstant.WIDTH_TABLE_NUMBER; i++) {
+        for (int i = 0; i <= objects.size(); i++) {
             g2.drawLine(TableConstant.FIRST_WIDTH_LINE, h, TableConstant.TABLE_HEIGHT * TableConstant.HEIGHT_TABLE_NUMBER + TableConstant.FIRST_WIDTH_LINE, h);
             h += TableConstant.TABLE_WIDTH;
         }
@@ -54,7 +54,7 @@ public class ImageUtil {
         //设置竖线
         g2.setColor(new Color(243, 250, 255));
         for (int i = 0; i <= TableConstant.HEIGHT_TABLE_NUMBER; i++) {
-            g2.drawLine(w, TableConstant.FIRST_HEIGHT_LINE, w, TableConstant.FIRST_HEIGHT_LINE + TableConstant.TABLE_WIDTH * TableConstant.WIDTH_TABLE_NUMBER);
+            g2.drawLine(w, TableConstant.FIRST_HEIGHT_LINE, w, TableConstant.FIRST_HEIGHT_LINE + TableConstant.TABLE_WIDTH * objects.size());
             w += TableConstant.TABLE_HEIGHT;
         }
 
@@ -74,14 +74,13 @@ public class ImageUtil {
         }
 
         String dir = System.getProperty("user.dir");
-        System.out.println(dir);
-        PictureUtil.createImage(dir + "/png/test.png", image);
+        PictureUtil.createImage(dir + "/png/" + imageName, image);
     }
 
     public static void FontProfile(Graphics2D g2) {
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL,RenderingHints.VALUE_STROKE_DEFAULT);
-        g2.setFont(new Font("黑体", Font.PLAIN, 20));
+        g2.setFont(new Font(TableConstant.FontName, Font.PLAIN, TableConstant.SIZE));
     }
 
 

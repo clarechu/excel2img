@@ -24,7 +24,10 @@ public class TableConstant {
     //列数
     public static final int HEIGHT_TABLE_NUMBER = 2;
 
-    //行数
-    public static final int WIDTH_TABLE_NUMBER = 12;
+    //字体
+    public static final String FontName = "黑体";
+
+    //字体大小
+    public static final int SIZE = 20;
     
 }
