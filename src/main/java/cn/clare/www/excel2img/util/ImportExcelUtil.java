@@ -89,7 +89,8 @@ public class ImportExcelUtil {
     }
 
     public static void main(String[] args) throws IOException {
-        File file = new File("/Users/clare/Desktop/四厂/压力表选型工具（天川）.xlsx");
+        String name1 = "/Users/clare/Desktop/b/a.xlsx";
+        File file = new File(name1);
         List<List<Object>> dataList = importExcel(file);
         for (int i = 1; i < dataList.size(); i++) {
             String name = (String) dataList.get(i).get(0) + i + ".jpg";
