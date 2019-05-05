@@ -4,6 +4,7 @@ import cn.clare.www.excel2img.constant.TableConstant;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.List;
 
 /**
@@ -64,7 +65,7 @@ public class ImageUtil {
         int height = 0;
         int width = 0;
         //填充文字
-        for (int i =0;i< objects.size(); i++){
+        for (int i = 0; i < objects.size(); i++) {
             g2.setColor(new Color(243, 250, 255));
             graphics.drawString(objects.get(i).toString(), w1 + 5, h1 + width + 30);
             g2.setColor(new Color(0, 0, 0));
@@ -72,14 +73,19 @@ public class ImageUtil {
             height += TableConstant.TABLE_HEIGHT;
             width += TableConstant.TABLE_WIDTH;
         }
-
         String dir = System.getProperty("user.dir");
-        PictureUtil.createImage(dir + "/png/" + imageName, image);
+        String pathName = dir + "/png/";
+        File myPath = new File(pathName);
+        if (!myPath.exists()) {
+            myPath.mkdir();
+        }
+        System.out.println("文件生成--->  " + imageName);
+        PictureUtil.createImage(pathName + imageName, image);
     }
 
     public static void FontProfile(Graphics2D g2) {
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
-        g2.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL,RenderingHints.VALUE_STROKE_DEFAULT);
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_DEFAULT);
         g2.setFont(new Font(TableConstant.FontName, Font.PLAIN, TableConstant.SIZE));
     }
 

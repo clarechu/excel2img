@@ -36,7 +36,7 @@ public class ImportExcelUtil {
         XSSFRow row = null;
         XSSFCell cell = null;
         int rows = sheet.getPhysicalNumberOfRows();
-        rows = 2;
+        //rows = 2;
         for (int i = sheet.getFirstRowNum(); i <= rows; i++) {
             row = sheet.getRow(i);
             if (row == null) {
