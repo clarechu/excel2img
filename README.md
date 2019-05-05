@@ -87,10 +87,10 @@ cd target
 使用浏览器访问
 
 ```
-localhost:8080/excel?name=D:\Tencent\WeChat Files\chu1062186165\FileStorage\File\2019-05\四厂\压力表选型工具（天川）.xlsx
+localhost:8080/excel?name=D:\File\2019-05\四厂\压力表选型工具（天川）.xlsx
 ```
 
-注意 `D:\Tencent\WeChat Files\chu1062186165\FileStorage\File\2019-05\四厂\压力表选型工具（天川）.xlsx` 为Excel文件路径
+注意 `D:\File\2019-05\四厂\压力表选型工具（天川）.xlsx` 为Excel文件路径
 
 
 
