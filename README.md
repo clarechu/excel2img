@@ -52,12 +52,12 @@ mvn clean install
 
 启动jar文件
 
-···shell
+```shell
 cd target
 
  java -jar excel2img-0.0.1-SNAPSHOT.jar --server.port=8080
+```
 
-···
 
 显示以下结果
 
