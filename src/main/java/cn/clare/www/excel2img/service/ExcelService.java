@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Formatter;
 import java.util.List;
 
 /**
@@ -19,15 +20,25 @@ import java.util.List;
 public class ExcelService {
 
     public void get(String fileName) {
+        long time = System.currentTimeMillis();
         try {
             File file = new File(fileName);
             List<List<Object>> dataList = ImportExcelUtil.importExcel(file);
+            List<Object> heard = dataList.get(0);
+            heard.remove(0);
             for (int i = 1; i < dataList.size(); i++) {
+                System.out.println(" WRITE NUMBER:"+ i);
                 String name = (String) dataList.get(i).get(0) + i + ".jpg";
-                dataList.get(0).remove(0);
                 dataList.get(i).remove(0);
-                ImageUtil.getImage(name, dataList.get(0), dataList.get(i));
+                ImageUtil.getImage(name, heard, dataList.get(i));
             }
+            long time1 = System.currentTimeMillis();
+            System.out.println(" ------------------------------------------------------------------------");
+            System.out.println(" BUILD SUCCESS");
+            System.out.println(" ------------------------------------------------------------------------");
+            System.out.println(" Total time:  " + ((time1 - time) / 1000) + "s");
+            System.out.println(" Finished at:" + time1);
+            System.out.println(" ------------------------------------------------------------------------");
         } catch (IOException e) {
             e.printStackTrace();
         }
