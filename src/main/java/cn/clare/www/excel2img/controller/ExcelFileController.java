@@ -26,8 +26,13 @@ public class ExcelFileController {
     private String path;
 
     @RequestMapping(method = RequestMethod.GET, value = "")
-    public String get(String name) {
-        excelService.get(name);
+    public String get(String name, String fileName) {
+        excelService.get(path, fileName, name);
+        return "success";
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/v")
+    public String post1(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
         return "success";
     }
 
@@ -52,7 +57,8 @@ public class ExcelFileController {
             e.printStackTrace();
             return "fail";
         }
-        excelService.get(realPath);
+        excelService.get(path, filename.split("\\.")[0], realPath);
         return "success";
     }
+
 }

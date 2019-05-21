@@ -19,10 +19,10 @@ import java.util.List;
 @Service
 public class ExcelService {
 
-    public void get(String fileName) {
+    public void get(String path, String fileName, String filePath) {
         long time = System.currentTimeMillis();
         try {
-            File file = new File(fileName);
+            File file = new File(filePath);
             List<List<Object>> dataList = ImportExcelUtil.importExcel(file);
             List<Object> heard = dataList.get(0);
             heard.remove(0);
@@ -30,7 +30,7 @@ public class ExcelService {
                 System.out.println(" WRITE NUMBER:"+ i);
                 String name = (String) dataList.get(i).get(0) + i + ".jpg";
                 dataList.get(i).remove(0);
-                ImageUtil.getImage(name, heard, dataList.get(i));
+                ImageUtil.getImage(path, fileName, name, heard, dataList.get(i));
             }
             long time1 = System.currentTimeMillis();
             System.out.println(" ------------------------------------------------------------------------");

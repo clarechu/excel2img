@@ -96,7 +96,7 @@ public class ImportExcelUtil {
             String name = (String) dataList.get(i).get(0) + i + ".jpg";
             dataList.get(0).remove(0);
             dataList.get(i).remove(0);
-            ImageUtil.getImage(name, dataList.get(0), dataList.get(i));
+            ImageUtil.getImage("p", "a", name, dataList.get(0), dataList.get(i));
         }
     }
 

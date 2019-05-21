@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class ImageUtil {
 
-    public static void getImage(String imageName, List<Object> objects, List<Object> objects1) {
+    public static void getImage(String path, String fileName, String imageName, List<Object> objects, List<Object> objects1) {
         int TotalWidth = TableConstant.TABLE_HEIGHT * 2 + TableConstant.FIRST_WIDTH_LINE * 2;
         int TotalHeight = TableConstant.TABLE_WIDTH * objects.size() + TableConstant.FIRST_HEIGHT_LINE * 2;
         BufferedImage image = new BufferedImage(TotalWidth, TotalHeight, BufferedImage.TYPE_INT_RGB);
@@ -73,8 +73,8 @@ public class ImageUtil {
             height += TableConstant.TABLE_HEIGHT;
             width += TableConstant.TABLE_WIDTH;
         }
-        String dir = System.getProperty("user.dir");
-        String pathName = dir + "/png/";
+        //String dir = System.getProperty("user.dir");
+        String pathName = path + "/" + fileName + "/";
         File myPath = new File(pathName);
         if (!myPath.exists()) {
             myPath.mkdir();
