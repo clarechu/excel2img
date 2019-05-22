@@ -2,7 +2,7 @@ version: '3'
 services:
   exceltoimg:
     volumes:
-      - /data/excel:/Users/clare/data
+      - /Users/clare/data:/Users/clare/data
     ports:
     - 8080:8080
     environment:

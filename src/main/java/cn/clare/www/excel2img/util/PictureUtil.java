@@ -5,9 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.BufferedOutputStream;
-import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,8 +14,8 @@ import java.util.Map;
 import cn.clare.www.excel2img.bean.PolicyBean;
 import cn.clare.www.excel2img.dto.PolicyPersonDto;
 import cn.clare.www.excel2img.dto.PolicyProductDto;
-import com.sun.image.codec.jpeg.JPEGCodec;
-import com.sun.image.codec.jpeg.JPEGImageEncoder;
+
+import javax.imageio.ImageIO;
 
 /**
  * @ClassName PictureUtil
@@ -34,8 +32,9 @@ public class PictureUtil {
         try {
             FileOutputStream fos = new FileOutputStream(fileLocation);
             BufferedOutputStream bos = new BufferedOutputStream(fos);
-            JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(bos);
-            encoder.encode(image);
+            ImageIO.write(image, "jpeg", bos);
+            //JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(bos);
+            //encoder.encode(image);
             bos.close();
             fos.close();
         } catch (Exception e) {
